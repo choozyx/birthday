@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"> 
+ <head> 
+  <meta charset="UTF-8">
+  <title>Happy Birthday</title> 
+  <link rel="stylesheet" href="style.css"> 
+ </head> 
+ <body> 
+  <div class="card"> 
+   <img src="https://github.com/DzarelDeveloper/Img/blob/main/ulangtahun.jpg?raw=true" alt="birthday" class="birthday"> 
+   <div class="text"> 
+    <h1 id="greeting"></h1>
+    <p>Happy special birthday! Today is a day to celebrate your extraordinary existence. On this journey of life, I am truly grateful to have you by my side.
+<br><br>
+May this year be filled with happiness, success, and love. Thank you for being a part of my life’s story. Happy birthday, and may every day be filled with joy and incredible accomplishments.    <p class="muted">- Nicho -</p> 
+   </div> 
+   <div class="space"></div> 
+   <audio controls autoplay> 
+    <source src="hbd.mp3" type="audio/mp3">
+   </audio> 
+   <script src="script.js"></script>
+  </div> 
+  <script>
+  const name = localStorage.getItem("guestName");
+
+  if (!name) {
+    window.location.href = "index.html";
+  } else {
+    document.getElementById("greeting").textContent = `Hii ${name}!`;
+  }
+</script>
+
+ </body>
+</html>
