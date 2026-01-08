@@ -1,34 +1,68 @@
 <!doctype html>
 <html lang="en"> 
- <head> 
+<head> 
   <meta charset="UTF-8">
   <title>Happy Birthday</title> 
   <link rel="stylesheet" href="style.css"> 
- </head> 
- <body> 
+</head> 
+
+<body> 
   <div class="card"> 
-   <img src="https://github.com/DzarelDeveloper/Img/blob/main/ulangtahun.jpg?raw=true" alt="birthday" class="birthday"> 
-   <div class="text"> 
-    <h1 id="greeting"></h1>
-    <p>Happy special birthday! Today is a day to celebrate your extraordinary existence. On this journey of life, I am truly grateful to have you by my side.
-<br><br>
-May this year be filled with happiness, success, and love. Thank you for being a part of my life’s story. Happy birthday, and may every day be filled with joy and incredible accomplishments.    <p class="muted">- Nicho -</p> 
-   </div> 
-   <div class="space"></div> 
-   <audio controls autoplay> 
-    <source src="hbd.mp3" type="audio/mp3">
-   </audio> 
-   <script src="script.js"></script>
+
+    <img src="https://github.com/DzarelDeveloper/Img/blob/main/ulangtahun.jpg?raw=true" 
+         alt="birthday" class="birthday"> 
+
+    <div class="text"> 
+      <h1 id="greeting"></h1>
+
+      <p>
+        Happy special birthday! Today is a day to celebrate your extraordinary existence. 
+        On this journey of life, I am truly grateful to have you by my side.
+        <br><br>
+        May this year be filled with happiness, success, and love. 
+        Thank you for being a part of my life’s story. 
+        Happy birthday, and may every day be filled with joy and incredible accomplishments.
+      </p>
+
+      <p class="muted">- Nicho -</p> 
+    </div> 
+
+    <div class="space"></div> 
+
+    <audio id="bgMusic" controls>
+      <source src="hbd.mp3" type="audio/mp3">
+    </audio> 
+
   </div> 
+
   <script>
-  const name = localStorage.getItem("guestName");
+    const name = localStorage.getItem("guestName");
+    const autoPlay = localStorage.getItem("autoPlay");
+    const audio = document.getElementById("bgMusic");
+    const body = document.body;
 
-  if (!name) {
-    window.location.href = "index.html";
-  } else {
-    document.getElementById("greeting").textContent = `Hii ${name}!`;
-  }
-</script>
+    if (!name) {
+      window.location.href = "index.html";
+    } else {
+      document.getElementById("greeting").textContent = `Hii ${name}!`;
+    }
 
- </body>
+    if (autoPlay === "true") {
+      audio.volume = 0.3;
+      audio.play().catch(() => {
+        console.log("Autoplay diblokir browser");
+      });
+      localStorage.removeItem("autoPlay");
+    }
+
+    audio.addEventListener("play", () => {
+      body.classList.add("play-music");
+    });
+
+    audio.addEventListener("pause", () => {
+      body.classList.remove("play-music");
+    });
+  </script>
+
+</body>
 </html>

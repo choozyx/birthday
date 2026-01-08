@@ -15,28 +15,42 @@
     <input 
       type="text" 
       id="nameInput" 
-      placeholder="Contoh: Prabowo Subianto" 
+      placeholder="Contoh: Bahlil Etanol"
       autocomplete="off"
+      oninput="clearError()"
+      onkeypress="handleEnter(event)"
     />
 
     <button onclick="checkName()">Masuk</button>
     <p id="error" class="error"></p>
   </div>
 
-  <script>
-    function checkName() {
-      const input = document.getElementById("nameInput").value.trim();
-      const error = document.getElementById("error");
-      const allowedName = "Bunga Thatia Lestari";
+<script>
+  const allowedName = "Bunga Thatia Lestari";
 
-      if (input === allowedName) {
-        localStorage.setItem("guestName", input);
-        window.location.href = "card.html";
-      } else {
-        error.textContent = "Nama tidak terdaftar 💔";
-      }
+  function checkName() {
+    const input = document.getElementById("nameInput").value.trim();
+    const error = document.getElementById("error");
+
+    if (input === allowedName) {
+      localStorage.setItem("guestName", input);
+      localStorage.setItem("autoPlay", "true");
+      window.location.href = "card.html";
+    } else {
+      error.textContent = "Nama tidak terdaftar 💔";
     }
-  </script>
+  }
+
+  function handleEnter(e) {
+    if (e.key === "Enter") {
+      checkName();
+    }
+  }
+
+  function clearError() {
+    document.getElementById("error").textContent = "";
+  }
+</script>
 
 </body>
 </html>
